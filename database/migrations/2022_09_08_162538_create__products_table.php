@@ -21,6 +21,9 @@ class CreateProductsTable extends Migration
             $table->text('comment');
             $table->text('img_path');
             $table->timestamps();
+
+            // 外部キー制約
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

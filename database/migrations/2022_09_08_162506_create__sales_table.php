@@ -14,8 +14,12 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('_sales', function (Blueprint $table) {
-            $table->bigIncrements('product_id');
+            $table->bigIncrements('id');
+            $table->unsignedInteger('product_id');
             $table->timestamps();
+
+            // 外部キー制約
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
