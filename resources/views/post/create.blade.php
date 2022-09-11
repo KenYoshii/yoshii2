@@ -12,7 +12,7 @@
 
 				<div class="form-group">
 					<label for="body">本文</label>
-					<textarea name="body" class="form-control" id="body" cols="30" rows="10"><textarea>
+					<textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
 				</div>
 
 				<div class="form-group">
