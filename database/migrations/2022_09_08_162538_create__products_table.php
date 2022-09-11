@@ -15,15 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('company_id');
+            $table->unsignedBigInteger('_company_id');
             $table->integer('price');
             $table->integer('stock');
             $table->text('comment');
             $table->text('img_path');
             $table->timestamps();
-
-            // 外部キー制約
-            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
