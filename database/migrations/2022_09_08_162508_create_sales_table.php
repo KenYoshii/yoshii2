@@ -13,13 +13,13 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('_sales', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('_product_id');
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
             //外部キー制約の設定
-            $table->foreign('_product_id')->references('id')->on('_products');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_sales');
+        Schema::dropIfExists('sales');
     }
 }

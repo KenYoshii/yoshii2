@@ -13,9 +13,9 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('_company_id');
+            $table->unsignedBigInteger('company_id');
             $table->integer('price');
             $table->integer('stock');
             $table->text('comment');
@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             //外部キー制約の設定
-            $table->foreign('_company_id')->references('id')->on('_companies');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_products');
+        Schema::dropIfExists('products');
     }
 }
