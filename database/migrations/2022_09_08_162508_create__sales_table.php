@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_products', function (Blueprint $table) {
+        Schema::create('_sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('_company_id');
-            $table->integer('price');
-            $table->integer('stock');
-            $table->text('comment');
-            $table->text('img_path');
+            $table->unsignedBigInteger('_product_id');
             $table->timestamps();
+
+            //外部キー制約の設定
+            $table->foreign('_product_id')->references('id')->on('_products');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_products');
+        Schema::dropIfExists('_sales');
     }
 }
