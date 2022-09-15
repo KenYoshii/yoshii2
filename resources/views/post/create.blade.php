@@ -6,14 +6,37 @@
 			<h1 class="mt4">新規登録</h1>
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
+
+				<div>
+                    <label for="">会社ID
+                    <div>
+                        <select name="company" data-toggle="select">
+                            <option value="">全て</option>
+                            @foreach ($companies_list as $companies_item)
+                                <option value="{{ $companies_item->getCompany() }}" @if($company=='{{ $companies_item->getCompany() }}') selected @endif>{{ $companies_item->getCompany() }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    </label>
+                </div>
 				<div class="form-group">
-					<label for="title">商品名</label>
-					<input type="text" name="title" class="form-control" id="title" placeholder="Enter Title">
+					<label for="product_name">商品名</label>
+					<input type="text" name="product_name" class="form-control" id="product_name" placeholder="Enter Title">
 				</div>
 
 				<div class="form-group">
-					<label for="body">本文</label>
-					<textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
+					<label for="price">金額</label>
+					<input type="number" name="price" class="form-control" id="price" placeholder="price">
+				</div>
+
+				<div class="form-group">
+					<label for="stock">在庫</label>
+					<input type="number" name="stock" class="form-control" id="stock" placeholder="stock">
+				</div>
+
+				<div class="form-group">
+					<label for="comment">コメント</label>
+					<textarea name="comment" class="form-control" id="comment" cols="30" rows="10"></textarea>
 				</div>
 
 				<div class="form-group">
