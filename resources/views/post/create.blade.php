@@ -4,6 +4,11 @@
 	<div class="col-md-10 mt-6">
 		<div class="card-body">
 			<h1 class="mt4">新規登録</h1>
+
+			@if(session('message'))
+				<div class="alert alert-success">{{session('message')}}</div>
+			@endif
+			
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
 
@@ -13,9 +18,9 @@
 					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
 					value="{{ old('company_id') }}"
 				
-					@foreach($companies as $id => $company_name)
+					{{--  @foreach($companies as $id => $company_name)
 						<option value="{{ $id }}">{{ $company_name }}</option>
-					@endforeach
+					@endforeach  --}}
 				</select>
 				
 				<div class="form-group">
