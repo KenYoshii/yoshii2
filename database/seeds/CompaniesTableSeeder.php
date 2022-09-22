@@ -15,27 +15,21 @@ class CompaniesTableSeeder extends Seeder
             'id' => '1',
             'company_name' => 'A社',
             'street_address' => '大阪府守口市佐太東町3-101-5',
-            'representative_name' => '芝山 影只',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'representative_name' => '芝山 影只'
             ]);
 
         \DB::table('companies')->insert([
             'id' => '2',
             'company_name' => 'B社',
             'street_address' => '京都府京都市伏見区淀水垂町509-16',
-            'representative_name' => '静間 崇政',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'representative_name' => '静間 崇政'
             ]);
 
         \DB::table('companies')->insert([
-            'id' => '1',
+            'id' => '3',
             'company_name' => 'C社',
             'street_address' => '愛知県名古屋市北区金田町4-721-1',
-            'representative_name' => '國府 広差化',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'representative_name' => '國府 広差化'
             ]);
     }
 }

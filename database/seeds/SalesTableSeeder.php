@@ -13,30 +13,22 @@ class SalesTableSeeder extends Seeder
     {
         \DB::table('sales')->insert([
             'id' => '1',
-            'producr_id' => '1',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'product_id' => '1'
             ]);
 
-        \DB::table('companies')->insert([
+        \DB::table('sales')->insert([
             'id' => '2',
-            'producr_id' => '2',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'product_id' => '2'
             ]);
 
-        \DB::table('companies')->insert([
+        \DB::table('sales')->insert([
             'id' => '3',
-            'producr_id' => '3',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'product_id' => '3'
             ]);
 
-        \DB::table('companies')->insert([
+        \DB::table('sales')->insert([
             'id' => '4',
-            'producr_id' => '4',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'product_id' => '4'
             ]);
     }
 }

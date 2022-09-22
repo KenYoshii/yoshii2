@@ -18,9 +18,7 @@ class ProductsTableSeeder extends Seeder
             'price' => '100',
             'stock' => '10',
             'comment' => '富士山の天然水',
-            'img_path' => '/Applications/MAMP/htdocs/yoshii2/storage/app/public/images/ミネラルウォーター.png',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'img_path' => '/Applications/MAMP/htdocs/yoshii2/storage/app/public/images/ミネラルウォーター.png'
             ]);
 
         \DB::table('products')->insert([
@@ -30,9 +28,7 @@ class ProductsTableSeeder extends Seeder
             'price' => '150',
             'stock' => '15',
             'comment' => 'おいしいやつ',
-            'img_path' => '/Applications/MAMP/htdocs/yoshii2/public/storage/images/オレンジジュース.png',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'img_path' => '/Applications/MAMP/htdocs/yoshii2/public/storage/images/オレンジジュース.png'
             ]);
 
         \DB::table('products')->insert([
@@ -43,8 +39,6 @@ class ProductsTableSeeder extends Seeder
             'stock' => '10',
             'comment' => 'ブルーマウンテン',
             'img_path' => '/Applications/MAMP/htdocs/yoshii2/public/storage/images/コーヒー.png',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
             ]);
 
         \DB::table('products')->insert([
@@ -54,9 +48,7 @@ class ProductsTableSeeder extends Seeder
             'price' => '200',
             'stock' => '20',
             'comment' => 'クラフトコーラ',
-            'img_path' => '/Applications/MAMP/htdocs/yoshii2/public/storage/images/コーラ.png',
-            'created_at' => 'date('Y-m-d H:i:s')',
-            'updated_at' => 'date('Y-m-d H:i:s')'
+            'img_path' => '/Applications/MAMP/htdocs/yoshii2/public/storage/images/コーラ.png'
             ]);
     }
 }
