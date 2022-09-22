@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\User;
+use App\User, App\Company;
 
 class ProductController extends Controller
 {
@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::all();
+        return view('home');
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        //
     }
 
     /**
@@ -36,14 +37,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $post=new Product();
-        $post->company_id=company()->id;
-        $post->product_name=$request->product_name;
-        $post->price=$request->price;
-        $post->stock=$request->stock;
-        $post->comment=$request->comment;
-        $post->save();
-        return back;
+        $product=new Product();
+        $product->company_id=$request->company_id;
+        $product->product_name=$request->product_name;
+        $product->price=$request->price;
+        $product->stock=$request->stock;
+        $product->comment=$request->comment;
+
+        if(request('image')){
+            $name=request()->file('image')->getClientOriginalName();
+            $file=request()->file('image')->move('storage/images', $name);
+            $product->image=$name;
+        }
+        $product->save();
+        return back();
     }
 
     /**

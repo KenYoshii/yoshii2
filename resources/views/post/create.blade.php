@@ -7,18 +7,17 @@
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
 
-				<div>
-                    <label for="">会社ID
-                    <div>
-                        <select name="company" data-toggle="select">
-                            <option value="">全て</option>
-                            @foreach ($companies_list as $companies_item)
-                                <option value="{{ $companies_item->getCompany() }}" @if($company=='{{ $companies_item->getCompany() }}') selected @endif>{{ $companies_item->getCompany() }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    </label>
-                </div>
+				<select>
+					id="company_id"
+					name="company_id"
+					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
+					value="{{ old('company_id') }}"
+				
+					@foreach($companies as $id => $company_name)
+						<option value="{{ $id }}">{{ $company_name }}</option>
+					@endforeach
+				</select>
+				
 				<div class="form-group">
 					<label for="product_name">商品名</label>
 					<input type="text" name="product_name" class="form-control" id="product_name" placeholder="Enter Title">
