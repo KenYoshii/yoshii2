@@ -26,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts=Product::all();
-        return view('home', compact('posts'));
+        $posts=Product::orderBy('created_at', 'desc')->get();
+        $user=auth()->user();
+        return view('home', compact('posts', 'user'));
     }
 }

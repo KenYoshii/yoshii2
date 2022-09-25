@@ -47,11 +47,12 @@ class ProductController extends Controller
         $post->comment=$request->comment;
 
         if(request('image')){
-            $name=request()->file('image')->getClientOriginalName();
+            $original=request()->file('image')->getClientOriginalName();
+            $name=date('Ymd_His').'_'.$original;
             $file=request()->file('image')->move('storage/images', $name);
-            $product->image=$name;
+            $post->image=$name;
         }
-        $product->save();
+        $post->save();
         return back()->with('message', '保存しました');
     }
 
@@ -61,9 +62,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $post)
     {
-        //
+        return view('post.show', compact('post'));
     }
 
     /**
