@@ -3,13 +3,19 @@
 <div class="card mb-4">
 	<div class="card-header">
 		<h4>{{$post->product_name}}</h4>
+		<span class="ml-auto">
+			<p><a href="{{route('product.edit', $post)}}" class="btn btn-info btn-sm">編集</a></p>
+		</span>
+
 	</div>
 	<div class="card-body">
-		<div>{{$post->img_path}}</div>
-		<p class="card-text">{{$post->company_id}}</p>
-		<p class="card-text">{{$post->price}}</p>
-		<p class="card-text">{{$post->stock}}</p>
-		<p class="card-text">{{$post->comment}}</p>
+		<div>
+			<img src="{{asset('storage/images/'.$post->img_path)}}" style="height: 300px;">
+		</div>
+		<p class="card-text">{{$post->company_name}}</p>
+		<p class="card-text">価格：{{$post->price}}円</p>
+		<p class="card-text">在庫数：{{$post->stock}}</p>
+		<p class="card-text">コメント：{{$post->comment}}</p>
 	</div>
 	<div class="card-footer">
 		<span class="mr-2 float-right">

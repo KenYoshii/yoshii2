@@ -62,9 +62,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $post)
+    public function show(Request $request, $id)
     {
-        return view('post.show', compact('post'));
+        $post = Product::findOrFail($id);
+        return view('post.show', ['post' => $post]);
     }
 
     /**
@@ -75,7 +76,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Product::findOrFail($id);
+        return view('post.edit', ['post' => $post]);
     }
 
     /**
@@ -87,7 +89,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post=new Product();
+        $post->company_id=$request->company_id;
+        $post->product_name=$request->product_name;
+        $post->price=$request->price;
+        $post->stock=$request->stock;
+        $post->comment=$request->comment;
+
+        if(request('image')){
+            $original=request()->file('image')->getClientOriginalName();
+            $name=date('Ymd_His').'_'.$original;
+            $file=request()->file('image')->move('storage/images', $name);
+            $post->image=$name;
+        }
+        $post->save();
+        return back()->with('message', '更新しました');
+    }
     }
 
     /**

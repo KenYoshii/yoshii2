@@ -17,14 +17,13 @@
         @foreach ($posts as $post)
             <tr>
                 <td>{{ $post->id }}</td>
-                <td>{{ $post->img_path }}</td>
+                <td><img src="{{asset('storage/images/'.$post->img_path)}}" style="height: 150px;"></td>
                 <td>{{ $post->product_name }}</td>
                 <td>{{ $post->price }}</td>
                 <td>{{ $post->stock }}</td>
                 </td>
                 <td class="text-nowrap">
                     <p><a href="{{route('product.show', $post)}}" class="btn btn-primary btn-sm">詳細</a></p>
-                    <p><a href="" class="btn btn-info btn-sm">編集</a></p>
                     <p><a href="" class="btn btn-danger btn-sm">削除</a></p>
                 </td>
             </tr>
