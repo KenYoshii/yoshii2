@@ -66,6 +66,8 @@ class ProductController extends Controller
     {
         $post = Product::findOrFail($id);
         return view('post.show', ['post' => $post]);
+
+        
     }
 
     /**
@@ -89,7 +91,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post=new Product();
         $post->company_id=$request->company_id;
         $post->product_name=$request->product_name;
         $post->price=$request->price;
@@ -105,7 +106,7 @@ class ProductController extends Controller
         $post->save();
         return back()->with('message', '更新しました');
     }
-    }
+    
 
     /**
      * Remove the specified resource from storage.

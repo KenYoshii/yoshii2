@@ -8,7 +8,7 @@
 			@if(session('message'))
 				<div class="alert alert-success">{{session('message')}}</div>
 			@endif
-			
+
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
 
@@ -51,6 +51,7 @@
 			</div>
 
 				<button type="submit" class="btn-success">送信する</button>
+				<p style="margin-top: 20px"><a href="{{route('home')}}" class="btn btn-info btn-sm">戻る</a></p>
 			</form>
 		</div>
 	</div>

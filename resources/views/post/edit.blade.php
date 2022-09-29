@@ -51,7 +51,9 @@
 			</div>
 
 				<button type="submit" class="btn-success">送信する</button>
+				<p style="margin-top: 20px"><a href="{{route('product.show', $post)}}" class="btn btn-info btn-sm">戻る</a></p>
 			</form>
+			
 		</div>
 	</div>
 </div>

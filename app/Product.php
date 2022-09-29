@@ -9,6 +9,7 @@ class Product extends Model
     //割り当て許可
     protected $fillable = [
         'company_id',
+        'company_name',
         'product_name',
         'price',
         'stock',

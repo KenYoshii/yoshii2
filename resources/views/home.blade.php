@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<p><a href="{{route('product.create')}}" class="btn btn-info btn-sm">新規登録</a></p>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -21,6 +22,7 @@
                 <td>{{ $post->product_name }}</td>
                 <td>{{ $post->price }}</td>
                 <td>{{ $post->stock }}</td>
+                <td>{{ $post->company_name }}</td>
                 </td>
                 <td class="text-nowrap">
                     <p><a href="{{route('product.show', $post)}}" class="btn btn-primary btn-sm">詳細</a></p>
