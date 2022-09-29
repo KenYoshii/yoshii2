@@ -22,11 +22,13 @@
                 <td>{{ $post->product_name }}</td>
                 <td>{{ $post->price }}</td>
                 <td>{{ $post->stock }}</td>
-                <td>{{ $post->company_name }}</td>
+                <td>{{ $post->company_id }}</td>
                 </td>
                 <td class="text-nowrap">
                     <p><a href="{{route('product.show', $post)}}" class="btn btn-primary btn-sm">詳細</a></p>
-                    <p><a href="" class="btn btn-danger btn-sm">削除</a></p>
+                    <p><a href="{{route('product.destroy', $post)}}" class="btn btn-danger btn-sm" onClick="return confirm('削除しますか？');">
+                        @csrf
+                        @method('delete')削除</a></p>
                 </td>
             </tr>
         @endforeach

@@ -16,6 +16,7 @@ class Company extends Model
     //リレーション
     public function products(){
         return $this->hasMany('App\Models\Product');
+        return $this->hasMany(Product::class);
     }
 
     public function getLists(){

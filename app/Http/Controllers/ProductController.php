@@ -116,6 +116,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post->delete();
+        return redirect()->route('home')->with('message', '削除しました');
     }
 }
