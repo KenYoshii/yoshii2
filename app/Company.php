@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +15,8 @@ class Company extends Model
     
     //リレーション
     public function products(){
-        return $this->hasMany('App\Models\Product');
-        return $this->hasMany(Product::class);
+        return $this->hasMany('App\Product');
+        // return $this->hasMany(Product::class);
     }
 
     public function getLists(){
