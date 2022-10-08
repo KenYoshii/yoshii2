@@ -45,6 +45,7 @@ class ProductController extends Controller
         $post->price=$request->price;
         $post->stock=$request->stock;
         $post->comment=$request->comment;
+        $post->company_name=$request->company_name;
 
         if(request('image')){
             $original=request()->file('image')->getClientOriginalName();
@@ -65,9 +66,9 @@ class ProductController extends Controller
     public function show(Request $request, $id)
     {
         $post = Product::findOrFail($id);
+        $post->company_name=$request->company_name;
+        // dd($post);
         return view('post.show', ['post' => $post]);
-
-        
     }
 
     /**
