@@ -2,38 +2,25 @@
 
 @section('content')
 <p><a href="{{route('product.create')}}" class="btn btn-info btn-sm">新規登録</a></p>
-{{--  <div class="search">
-    <form action="{{ route('product.index') }}" method="GET">
-        @csrf
 
-        <div class="form-group">
-            <div>
-                <label for="">キーワード
-                <div>
-                    <input type="text" name="keyword" value="{{ $keyword }}">
-                </div>
-                </label>
-            </div>
+<!-- 検索フォーム -->
+<form method="get" action="" class="form-inline">
+    <div class="form-group">
+        <input type="text" name="keyword" class="form-control" value="{{$keyword}}" placeholder="キーワード検索">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="検索" class="btn btn-info" style="margin: 15px; color:white;">
+    </div>
+</form>
 
-            <div>
-                <label for="">メーカー名
-                <div>
-                    <select name="company" data-toggle="select">
-                        <option value="">全て</option>
-                        @foreach ($companies_list as $companies_item)
-                            <option value="{{ $companies_item->getCompany() }}" @if($company=='{{ $companies_item->getCompany() }}') selected @endif>{{ $companies_item->getCompany() }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                </label>
-            </div>
+{{--  <!-- セレクトボックス -->
+<select class="form-control" name="company_select" value="{{$company}}">
+    <option value="">選択</option>
+    @foreach (as)
+    <option value={{  }}</option>
+    @endforeach
+</select>  --}}
 
-            <div>
-                <input type="submit" class="btn" value="検索">
-            </div>
-        </div>
-    </form>
-</div>  --}}
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
