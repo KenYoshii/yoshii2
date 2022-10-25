@@ -65,9 +65,11 @@ class ProductController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $product = Product::all();
         $post = Product::findOrFail($id);
+
         $post->company_name=$request->company_name;
-        // dd($post);
+
         return view('post.show', ['post' => $post]);
     }
 
@@ -80,7 +82,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $post = Product::findOrFail($id);
-        return view('post.edit', ['post' => $post]);
+        $companies=Company::all();
+        return view('post.edit', ['post' => $post, 'companies' => $companies]);
     }
 
     /**

@@ -12,7 +12,7 @@
 		<div>
 			<img src="{{asset('storage/images/'.$post->img_path)}}" style="height: 300px;">
 		</div>
-		<p class="card-text">{{$post->company_id}}</p>
+		<p class="card-text">{{$post->company->company_name}}</p>
 		<p class="card-text">価格：{{$post->price}}円</p>
 		<p class="card-text">在庫数：{{$post->stock}}</p>
 		<p class="card-text">コメント：{{$post->comment}}</p>

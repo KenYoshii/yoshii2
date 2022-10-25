@@ -28,10 +28,8 @@ class HomeController extends Controller
      */
     public function index(Request $rq)
     {
-        // $posts=Product::orderBy('created_at', 'desc')->get();
         $company=Company::all();
         $user=auth()->user();
-        // $query = Product::query();
         $model = new Product();
         $products = $model->models();
         $keyword = $rq->input('keyword');
@@ -46,9 +44,56 @@ class HomeController extends Controller
         $query->orWhere('companies','like','%'.$keyword.'%');
         }
 
-        // 全件取得 +ページネーション
-        // $products = $query->orderBy('id','desc')->paginate(5);
+        //フォームを機能させるために各情報を取得し、viewに返す
+        $category = new Company;
+        $categories = $category->getLists();
+        $searchWord = $rq->input('searchWord');
+        $categoryId = $rq->input('company_id');
         
-        return view('home', compact('products', 'user', 'company', 'keyword', ));
+        return view('home', compact('products', 'user', 'company', 'keyword', 'categories', 'searchWord', 'categoryId' ));
+    }
+
+    // 検索メソッド(searchproduct)
+    public function search(Request $rq)
+    {
+        //入力される値nameの中身を定義する
+        $searchWord = $rq->input('searchWord'); //キーワードの値
+        $categoryId = $rq->input('categoryId'); //会社名の値
+
+        $query = Product::query();
+        //商品名が入力された場合、m_productsテーブルから一致する商品を$queryに代入
+        if (isset($searchWord)) {
+            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%');
+        }
+
+        //商品名が入力された場合、productsテーブルから一致する商品を$queryに代入
+        if (isset($searchWord)) {
+            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%');
+        }
+        //カテゴリが選択された場合、companiesテーブルからcompany_idが一致する会社を$queryに代入
+        if (isset($categoryId)) {
+            $query->where('company_id', $categoryId);
+        }
+
+        //$queryをcategory_idの昇順に並び替えて$productsに代入
+        $products = $query->orderBy('company_id', 'asc')->paginate(15);
+
+        //companiesテーブルからgetLists();関数でcompany_nameとidを取得する
+        $category = new Company;
+        $categories = $category->getLists();
+
+        return view('home', [
+            'products' => $products,
+            'categories' => $categories,
+            'searchWord' => $searchWord,
+            'categoryId' => $categoryId
+        ]);
+    }
+
+    //「\\」「%」「_」などの記号を文字としてエスケープさせる
+    public static function escapeLike($str)
+    {
+        return str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $str);
     }
 }
+

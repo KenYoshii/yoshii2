@@ -20,12 +20,12 @@ class Product extends Model
     
     //リレーション
     public function company(){
-        return $this->belongsTo('App\Models\Companies');
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo('App\Company');
+        // return $this->belongsTo(Company::class);
     }
 
     public function sales(){
-        return $this->hasMany('App\Models\Sale');
+        return $this->hasMany('App\Sale');
     }
 
     public function models(){

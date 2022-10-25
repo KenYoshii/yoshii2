@@ -16,11 +16,10 @@ class Company extends Model
     //リレーション
     public function products(){
         return $this->hasMany('App\Product');
-        // return $this->hasMany(Product::class);
     }
 
     public function getLists(){
-        $companies = Company::orderBy('id', 'asc')->plunck('company_name', 'id');
+        $companies = Company::orderBy('id', 'asc')->pluck('company_name', 'id');
 
         return $companies;
     }

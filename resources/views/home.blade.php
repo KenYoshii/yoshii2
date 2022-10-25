@@ -3,23 +3,38 @@
 @section('content')
 <p><a href="{{route('product.create')}}" class="btn btn-info btn-sm">新規登録</a></p>
 
-<!-- 検索フォーム -->
-<form method="get" action="" class="form-inline">
-    <div class="form-group">
-        <input type="text" name="keyword" class="form-control" value="{{$keyword}}" placeholder="キーワード検索">
-    </div>
-    <div class="form-group">
-        <input type="submit" value="検索" class="btn btn-info" style="margin: 15px; color:white;">
-    </div>
-</form>
+<!--検索フォーム-->
+      <div class="row">
+        <div class="col-sm">
+          <form method="GET" action="{{ route('searchproduct')}}">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">キーワード検索</label>
+              <!--入力-->
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name="searchWord" value="{{ $searchWord }}">
+              </div>
+              <div class="col-sm-auto">
+                <button type="submit" class="btn btn-primary ">検索</button>
+              </div>
+            </div>     
+            <!--プルダウンカテゴリ選択-->
+            <div class="form-group row">
+              <label class="col-sm-2">メーカー名</label>
+              <div class="col-sm-3">
+                <select name="categoryId" class="form-control" value="{{ $categoryId }}">
+                  <option value="">未選択</option>
 
-{{--  <!-- セレクトボックス -->
-<select class="form-control" name="company_select" value="{{$company}}">
-    <option value="">選択</option>
-    @foreach (as)
-    <option value={{  }}</option>
-    @endforeach
-</select>  --}}
+                  @foreach($categories as $id => $company_name)
+                  <option value="{{ $id }}">
+                    {{ $company_name }}
+                  </option>  
+                  @endforeach
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 
 <div class="table-responsive">
     <table class="table table-hover">
