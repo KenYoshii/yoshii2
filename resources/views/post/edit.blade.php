@@ -12,6 +12,8 @@
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
 
+				<div class="form-group">
+					<label for="company_name">会社名</label>
 				<select>
 					id="company_id"
 					name="company_id"
@@ -22,6 +24,7 @@
 						<option value="{{ $company->id }}">{{ $company->company_name }}</option>
 					@endforeach
 				</select>
+				</div>
 				
 				<div class="form-group">
 					<label for="product_name">商品名</label>

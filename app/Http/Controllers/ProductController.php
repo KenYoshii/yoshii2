@@ -27,8 +27,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $companies = Company::all();
-        return view('post.create');
+        $post = Product::all();
+        $companies=Company::all();
+        return view('post.create', ['post' => $post, 'companies' => $companies]);
     }
 
     /**
@@ -40,12 +41,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $post=new Product();
-        $post->company_id=$request->company_id;
+        $post->company_name=$request->company_name;
         $post->product_name=$request->product_name;
         $post->price=$request->price;
         $post->stock=$request->stock;
         $post->comment=$request->comment;
-        $post->company_name=$request->company_name;
 
         if(request('image')){
             $original=request()->file('image')->getClientOriginalName();
@@ -67,7 +67,6 @@ class ProductController extends Controller
     {
         $product = Product::all();
         $post = Product::findOrFail($id);
-
         $post->company_name=$request->company_name;
 
         return view('post.show', ['post' => $post]);

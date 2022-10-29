@@ -12,16 +12,19 @@
 			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
 				@csrf
 
+				<div class="form-group">
+					<label for="company_name">会社名</label>
 				<select>
 					id="company_id"
 					name="company_id"
 					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
 					value="{{ old('company_id') }}"
 				
-					{{--  @foreach($companies as $id => $company_name)
-						<option value="{{ $id }}">{{ $company_name }}</option>
-					@endforeach  --}}
+					@foreach($companies as $company)
+						<option value="{{ $company->id }}">{{ $company->company_name }}</option>
+					@endforeach
 				</select>
+				</div>
 				
 				<div class="form-group">
 					<label for="product_name">商品名</label>
