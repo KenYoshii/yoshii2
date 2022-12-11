@@ -27,7 +27,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $companies = Company::all();
         return view('post.create');
     }
 

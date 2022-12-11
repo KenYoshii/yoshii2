@@ -6,15 +6,15 @@
 <!--検索フォーム-->
       <div class="row">
         <div class="col-sm">
-          <form method="GET" action="{{ route('searchproduct')}}">
+          {{--  <form method="GET" action="{{ route('searchproduct')}}">  --}}
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">キーワード検索</label>
               <!--入力-->
               <div class="col-sm-5">
-                <input type="text" class="form-control" name="searchWord" value="{{ $searchWord }}">
+                <input id="search" type="text" class="form-control" name="searchWord" value="{{ $searchWord }}">
               </div>
               <div class="col-sm-auto">
-                <button type="submit" class="btn btn-primary ">検索</button>
+                <button id="btn" type="submit" class="btn btn-primary ">検索</button>
               </div>
             </div>     
             <!--プルダウンカテゴリ選択-->
@@ -70,3 +70,4 @@
     </table>
 </div>
 @endsection
+
