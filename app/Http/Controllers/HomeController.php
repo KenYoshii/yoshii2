@@ -50,39 +50,48 @@ class HomeController extends Controller
         $searchWord = $rq->input('searchWord');
         $categoryId = $rq->input('company_id');
         
-        return view('home', compact('products', 'user', 'company', 'keyword', 'categories', 'searchWord', 'categoryId' ));
+        return view('home', compact('products', 'categories'));
     }
 
     // 検索メソッド(searchproduct)
     public function search(Request $rq)
     {
         //入力される値nameの中身を定義する
-        $searchWord = $rq->input('searchWord'); //キーワードの値
-        $categoryId = $rq->input('categoryId'); //会社名の値
+        $searchWord = $rq->product_name; //キーワードの値
+        $categoryId = $rq->product_categoryId; //会社名の値
 
         $query = Product::query();
         //商品名が入力された場合、m_productsテーブルから一致する商品を$queryに代入
         if (isset($searchWord)) {
-            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%');
+            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%')->get();
         }
 
         //商品名が入力された場合、productsテーブルから一致する商品を$queryに代入
         if (isset($searchWord)) {
-            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%');
+            $query->where('product_name', 'like', '%' . self::escapeLike($searchWord) . '%')->get();
         }
         //カテゴリが選択された場合、companiesテーブルからcompany_idが一致する会社を$queryに代入
         if (isset($categoryId)) {
-            $query->where('company_id', $categoryId);
+            $query->where('company_id', $categoryId)->get();
         }
-
         //$queryをcategory_idの昇順に並び替えて$productsに代入
         $products = $query->orderBy('company_id', 'asc')->paginate(15);
+        // $products = $query->from('products')->select(
+        //     'products.id',
+        //     'products.product_name',
+        //     'products.price',
+        //     'products.stock',
+        //     'products.comment',
+        //     'products.img_path',
+        //     'companies.company_name',
+        // )
+        // ->leftJoin('companies', 'products.company_id', '=', 'companies.id')->get();
 
         //companiesテーブルからgetLists();関数でcompany_nameとidを取得する
         $category = new Company;
         $categories = $category->getLists();
 
-        return view('home', [
+        return response()->json([
             'products' => $products,
             'categories' => $categories,
             'searchWord' => $searchWord,

@@ -18,9 +18,9 @@
 					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
 					value="{{ old('company_id') }}"
 				
-					{{--  @foreach($companies as $id => $company_name)
-						<option value="{{ $id }}">{{ $company_name }}</option>
-					@endforeach  --}}
+					@foreach($companies as $company)
+						<option value="{{ $company->id }}">{{ $company->company_name }}</option>
+					@endforeach
 				</select>
 				
 				<div class="form-group">
