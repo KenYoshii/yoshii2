@@ -6,22 +6,21 @@
 <!--検索フォーム-->
       <div class="row">
         <div class="col-sm">
-          <form method="GET" action="{{ route('searchproduct')}}">
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">キーワード検索</label>
               <!--入力-->
               <div class="col-sm-5">
-                <input type="text" class="form-control" name="searchWord" value="{{ $searchWord }}">
+                <input id="search" type="text" class="form-control" name="searchWord" value="">
               </div>
               <div class="col-sm-auto">
-                <button type="submit" class="btn btn-primary ">検索</button>
+                <button id="btn" type="" class="btn btn-primary ">検索</button>
               </div>
             </div>     
             <!--プルダウンカテゴリ選択-->
             <div class="form-group row">
               <label class="col-sm-2">メーカー名</label>
               <div class="col-sm-3">
-                <select name="categoryId" class="form-control" value="{{ $categoryId }}">
+                <select name="categoryId" id="categoryId" class="form-control" value="">
                   <option value="">未選択</option>
 
                   @foreach($categories as $id => $company_name)
@@ -32,7 +31,6 @@
                 </select>
               </div>
             </div>
-          </form>
         </div>
       </div>
 
@@ -70,3 +68,4 @@
     </table>
 </div>
 @endsection
+

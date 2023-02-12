@@ -9,16 +9,13 @@
 				<div class="alert alert-success">{{session('message')}}</div>
 			@endif
 			
-			<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+			<form method="PUT" action="{{route('product.update', $post->id)}}" enctype="multipart/form-data">
 				@csrf
 
-				<div class="form-group">
-					<label for="company_name">会社名</label>
-				<select>
+				<select
 					id="company_id"
-					name="company_id"
-					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
-					value="{{ old('company_id') }}"
+					name="company_name"
+					class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}">
 				
 					@foreach($companies as $company)
 						<option value="{{ $company->id }}">{{ $company->company_name }}</option>
@@ -50,8 +47,8 @@
 					<label for="image">画像</label>
 					<div calss="col-md-6">
 						<input id="image" type="file" name="image">
+					</div>
 				</div>
-			</div>
 
 				<button type="submit" class="btn-success">送信する</button>
 				<p style="margin-top: 20px"><a href="{{route('product.show', $post)}}" class="btn btn-info btn-sm">戻る</a></p>

@@ -27,9 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $post = Product::all();
         $companies=Company::all();
-        return view('post.create', ['post' => $post, 'companies' => $companies]);
+        return view('post.create', ['companies' => $companies]);
     }
 
     /**
@@ -94,6 +93,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request);
         $post->company_id=$request->company_id;
         $post->product_name=$request->product_name;
         $post->price=$request->price;
