@@ -4,13 +4,13 @@
 	<div class="card-header">
 		<h4>{{$post->product_name}}</h4>
 		<span class="ml-auto">
-			<p><a href="{{route('product.edit', $post)}}" class="btn btn-info btn-sm">編集</a></p>
+			<p><a href="{{route('product.edit', $post->id)}}" class="btn btn-info btn-sm">編集</a></p>
 		</span>
 
 	</div>
 	<div class="card-body">
 		<div>
-			<img src="{{asset('storage/images/'.$post->img_path)}}" style="height: 300px;">
+			<img src="{{asset('/'.$post->img_path)}}" style="height: 300px;">
 		</div>
 		<p class="card-text">{{$post->company->company_name}}</p>
 		<p class="card-text">価格：{{$post->price}}円</p>

@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+@if(session('message'))
+	<div class="alert alert-success">{{session('message')}}</div>
+@endif
+
 <p><a href="{{route('product.create')}}" class="btn btn-info btn-sm">新規登録</a></p>
 
 <!--検索フォーム-->
@@ -35,7 +39,7 @@
       </div>
 
 <div class="table-responsive">
-    <table class="table table-hover">
+    <table id="table" class="table table-hover tablesorter">
         <thead>
         <tr>
             <th>ID</th>
@@ -44,23 +48,22 @@
             <th>価格</th>
             <th>在庫数</th>
             <th>メーカー名</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody id="tbl">
         @foreach ($products as $product)
-            <tr>
+            <tr id="{{ $product->id }}">
                 <td>{{ $product->id }}</td>
-                <td><img src="{{asset('storage/images/'.$product->img_path)}}" style="height: 150px;"></td>
+                <td><img src="{{asset('/'.$product->img_path)}}" style="height: 150px;"></td>
                 <td>{{ $product->product_name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->stock }}</td>
                 <td>{{ $product->company_name }}</td>
                 </td>
                 <td class="text-nowrap">
-                    <p><a href="{{route('product.show', $product)}}" class="btn btn-primary btn-sm">詳細</a></p>
-                    <p><a href="{{route('product.destroy', $product)}}" class="btn btn-danger btn-sm" onClick="return confirm('削除しますか？');">
-                        @csrf
-                        @method('delete')削除</a></p>
+									<p><a href="{{route('product.show', $product)}}" class="btn btn-primary btn-sm">詳細</a></p>
+									<p><button id="" value="" type="button" class="btn btn-danger btn-sm deleteBtn">削除</button></p>								
                 </td>
             </tr>
         @endforeach

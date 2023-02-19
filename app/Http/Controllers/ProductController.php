@@ -40,20 +40,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $post=new Product();
-        $post->company_name=$request->company_name;
+        $post->company_id=$request->company_id;
         $post->product_name=$request->product_name;
         $post->price=$request->price;
         $post->stock=$request->stock;
         $post->comment=$request->comment;
 
-        if(request('image')){
+        if($request->hasFile('image')){
             $original=request()->file('image')->getClientOriginalName();
             $name=date('Ymd_His').'_'.$original;
             $file=request()->file('image')->move('storage/images', $name);
-            $post->image=$name;
+            $post->img_path=$file;
         }
         $post->save();
-        return back()->with('message', '保存しました');
+        return redirect(route('home'))->with('message', '保存しました');
     }
 
     /**
@@ -93,33 +93,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        $post = Product::find($id);
         $post->company_id=$request->company_id;
         $post->product_name=$request->product_name;
         $post->price=$request->price;
         $post->stock=$request->stock;
         $post->comment=$request->comment;
 
-        if(request('image')){
+        if($request->hasFile('image')){
             $original=request()->file('image')->getClientOriginalName();
             $name=date('Ymd_His').'_'.$original;
             $file=request()->file('image')->move('storage/images', $name);
-            $post->image=$name;
+            $post->img_path=$file;
         }
         $post->save();
-        return back()->with('message', '更新しました');
+        return redirect(route('home'))->with('message', '更新しました');
     }
     
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->product_id;
+        $post = Product::find($id);
         $post->delete();
-        return redirect()->route('home')->with('message', '削除しました');
+        return $id;
     }
 }
