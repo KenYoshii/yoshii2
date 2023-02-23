@@ -60,10 +60,9 @@
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->stock }}</td>
                 <td>{{ $product->company_name }}</td>
-                </td>
                 <td class="text-nowrap">
 									<p><a href="{{route('product.show', $product)}}" class="btn btn-primary btn-sm">詳細</a></p>
-									<p><button id="" value="" type="button" class="btn btn-danger btn-sm deleteBtn">削除</button></p>								
+									<p><button id="{{ $product->id }}" value="" type="button" class="btn btn-danger btn-sm deleteBtn">削除</button></p>								
                 </td>
             </tr>
         @endforeach
