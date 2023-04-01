@@ -98,5 +98,28 @@ $(function () {
         },
         sortReset: true,
     }); 
-    
+
+    // 購入ボタン
+    $('.orderBtn').on('click', function () {
+        console.log('購入ボタンクリック');
+        // 購入対象の商品IDを取得
+        let clickEle = $(this);
+        let productId = clickEle.parent().parent().parent().attr('id');
+        $.ajax({
+            type: 'POST',
+            url: 'api/buy',
+            dataType: 'json',
+            data: {
+                product_id : productId,
+            },
+            cache: false,
+        })
+        .done(function() {
+            alert('購入しました');
+            window.location.reload();
+        })
+        .fail(function(data, xhr, err) {
+            alert('購入に失敗しました');
+        })
+    });
 });

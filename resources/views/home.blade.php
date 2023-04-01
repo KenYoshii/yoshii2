@@ -62,6 +62,7 @@
                 <td>{{ $product->company_name }}</td>
                 <td class="text-nowrap">
 									<p><a href="{{route('product.show', $product)}}" class="btn btn-primary btn-sm">詳細</a></p>
+									<p><button type="button" class="btn btn-success btn-sm orderBtn">購入</button></p>								
 									<p><button id="{{ $product->id }}" value="" type="button" class="btn btn-danger btn-sm deleteBtn">削除</button></p>								
                 </td>
             </tr>
