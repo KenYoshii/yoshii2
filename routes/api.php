@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\SaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api']], function(){
     Route::resource('product', 'ProductController', ['except' => ['create', 'edit']]);
   });
+
+Route::post('/buy/{id}','App\Http\Controllers\Api\SaleController@order')->name('buy');

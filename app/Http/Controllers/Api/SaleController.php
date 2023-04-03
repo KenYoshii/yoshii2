@@ -8,58 +8,46 @@ use App\Http\Controllers\Controller;
 
 class SaleController extends Controller
 {
+    protected $sale;
+    public function __construct(Sale $sale) {
+        $this->sale=$sale;
+    }
+    
     /**
-     * Display a listing of the resource.
+     * 購入情報作成.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function index()
-    {
-        //
+    public function create(Request $request) {
+        $order = Order::create([
+            'order_count' => $request->order_count,
+        ]);
+
+        return response()->json($order);
+    }
+    
+    /**
+     * 商品情報取得.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function fetch(Request $request) {
+        $order = Product::find($request->product_id);
+        return response()->json($order);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 注文数更新.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function order(Request $request) {
+        dd($request);
+        $hoge = $this->sale->insert($request->product_id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json($hoge);
     }
 }
